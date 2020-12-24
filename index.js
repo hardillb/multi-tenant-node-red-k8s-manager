@@ -27,7 +27,7 @@ const port = (process.env.PORT || 3000);
 const host = (process.env.HOST || '0.0.0.0');
 const cookieSecret = (process.env.COOKIE_SECRET || 'qscplmvb');
 
-const settings = require('./settings.js');
+const settings = require('./config/settings.js');
 
 // var docker = new Docker(settings.dockerodeSettings);
 
@@ -152,7 +152,7 @@ app.post('/instance', passport.authenticate(['basic'],{session: true}), function
 						containers:[
 							{
 								name: "node-red",
-								image: "docker-pi.local:5000/custom-node-red",
+								image: settings.["node-red-container"],
 								env: [
 									{ name: "APP_NAME", value: req.body.appname},
 									{ name: "MONGO_URL", value: "mongodb://mongo/nodered"}
