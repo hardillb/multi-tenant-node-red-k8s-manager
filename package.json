@@ -10,6 +10,11 @@
     "node-red",
     "kubernetes"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardillb/multi-tenant-node-red-k8s-manager"
+  },
+  "bugs": "https://github.com/hardillb/multi-tenant-node-red-k8s-manager/issues",
   "author": "hardillb@gmail.com",
   "license": "Apache-2.0",
   "dependencies": {
