@@ -71,6 +71,7 @@ mongoose.connect(settings.mongodb, mongoose_options)
 });
 const Users = require('./models/users');
 const Flows = require('./models/flows');
+const Credentials = require('./models/credentials');
 const Settings = require('./models/settings');
 const Sessions = require('./models/sessions');
 const Library = require('./models/library');
@@ -261,7 +262,8 @@ app.post('/instance/:id', passport.authenticate(['basic'],{session: true}), func
 						Flows.deleteOne({appname: appname}),
 						Settings.deleteOne({appname: appname}),
 						Sessions.deleteOne({appname: appname}),
-						Library.deleteMany({appname: appname})
+						Library.deleteMany({appname: appname}),
+						Credentials.deleteOne({appname: appname})
 					])
 			})
 			.then( () => {
