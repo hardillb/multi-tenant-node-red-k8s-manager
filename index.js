@@ -266,7 +266,8 @@ app.post('/instance/:id', passport.authenticate(['basic'],{session: true}), func
 						Credentials.deleteOne({appname: appname})
 					])
 			})
-			.then( () => {
+			.then( values => {
+				console.log(values);
 				console.log("cleared db")
 				res.status(204).send({})
 			})

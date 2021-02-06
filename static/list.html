@@ -16,6 +16,7 @@
     </div>
 </nav>
 <section>
+	<button onclick="populate()">Refresh</button>
     <table width="100%">
         <thead>
             <tr>
@@ -38,6 +39,10 @@ function populate() {
 	var xhr = new XMLHttpRequest();
 
 	xhr.onload = function() {
+
+		const list = document.getElementById("list");
+		list.querySelectorAll('*').forEach( n => n.remove() );
+
 		const response = JSON.parse(xhr.responseText);
 		console.log(response);
 		var containers = response.containers;
@@ -89,7 +94,7 @@ function populate() {
 			remove.appendChild(removeButton);
 			row.appendChild(remove);
 
-			document.getElementById("list").appendChild(row);
+			list.appendChild(row);
 		}
 	}
 
@@ -129,7 +134,7 @@ function populate() {
 function remove(id) {
 	var xhr = new XMLHttpRequest();
 	xhr.onload = function() {
-		setTimeout(location.reload(), 5000);
+		setTimeout(populate, 5000);
 	}
 
 	xhr.open("POST","/instance/"+id);
