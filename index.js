@@ -153,7 +153,7 @@ app.post('/instance', passport.authenticate(['basic'],{session: true}), function
 						containers:[
 							{
 								name: "node-red",
-								image: settings.["node-red-container"],
+								image: settings["node-red-container"],
 								env: [
 									{ name: "APP_NAME", value: req.body.appname},
 									{ name: "MONGO_URL", value: "mongodb://mongo/nodered"}
