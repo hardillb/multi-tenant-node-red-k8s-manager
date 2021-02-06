@@ -58,8 +58,8 @@
 			// console.log(response);
 			if (xhr.status == 201) {
 				var link = document.createElement('a');
-				link.setAttribute("href", response.url);
-				link.innerHTML=response.url;
+				link.setAttribute("href", "//" + response.hostname);
+				link.innerHTML=response.hostname;
 				setTimeout(function(){
 					document.getElementById("output").innerHTML = "";
 					document.getElementById("output").appendChild(link);
