@@ -17,11 +17,17 @@ const cookieParser = require('cookie-parser');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const SimpleNodeLogger = require('simple-node-logger');
 
-const kubeconfig = new KubeConfig()
-kubeconfig.loadFromFile('./config/config')
+// const kubeconfig = new KubeConfig()
+// kubeconfig.loadFromFile('./config/config')
+// const Request = require('kubernetes-client/backends/request')
+// const backend = new Request({ kubeconfig })
+// const client = new Client({ backend, version: '1.13' })
+
 const Request = require('kubernetes-client/backends/request')
-const backend = new Request({ kubeconfig })
-const client = new Client({ backend, version: '1.13' })
+const backend = new Request(Request.config.getInCluster())
+const client = new Client({ backend })
+client.loadSpec()
+
 
 const port = (process.env.PORT || 3000);
 const host = (process.env.HOST || '0.0.0.0');

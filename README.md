@@ -33,4 +33,4 @@ e.g.
  - `password` is the admin password
  - `logHistory` is the number of lines of pervious logs to show
 
- The location and authentication details for the K8s cluster are loaded from a config file called `config` that should be placed in the `config` directory. This file should be the same format as `~/.kube/config`
+ The app uses the default service account to access the Kubenetes API
