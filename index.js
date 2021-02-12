@@ -24,7 +24,8 @@ const SimpleNodeLogger = require('simple-node-logger');
 // const client = new Client({ backend, version: '1.13' })
 
 const Request = require('kubernetes-client/backends/request')
-const backend = new Request(Request.config.getInCluster())
+kubeconfig.loadFromCluster()
+const backend = new Request({ kubeconfig })
 const client = new Client({ backend })
 client.loadSpec()
 
@@ -196,7 +197,7 @@ app.post('/instance', passport.authenticate(['basic'],{session: true}), function
 					spec: {
 						rules: [
 							{
-								host: req.body.appname+".ubuntu.local",
+								host: hostname, //req.body.appname+".ubuntu.local",
 								http: {
 									paths: [
 										{
@@ -236,7 +237,7 @@ app.post('/instance', passport.authenticate(['basic'],{session: true}), function
 });
 
 app.get('/instance', passport.authenticate(['basic'],{session: true}), function(req,res){
-	client.api.v1.pods.get({qs:{
+	client.api.v1.namespaces("default").pods.get({qs:{
 		labelSelector: "nodered=true"
 	}})
 	.then(pods => {
