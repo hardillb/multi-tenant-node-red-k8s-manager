@@ -17,7 +17,7 @@ const cookieParser = require('cookie-parser');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const SimpleNodeLogger = require('simple-node-logger');
 
-// const kubeconfig = new KubeConfig()
+const kubeconfig = new KubeConfig()
 // kubeconfig.loadFromFile('./config/config')
 // const Request = require('kubernetes-client/backends/request')
 // const backend = new Request({ kubeconfig })
